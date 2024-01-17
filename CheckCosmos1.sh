@@ -32,3 +32,6 @@ checkNode "Zetachain" "zetacored"
 checkNode "Babylond" "babylond"
 
 checkNode "Dymension" "dymd"
+
+echo ""
+nodeserver
