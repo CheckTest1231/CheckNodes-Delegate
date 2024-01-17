@@ -34,4 +34,4 @@ checkNode "Babylond" "babylond"
 checkNode "Dymension" "dymd"
 
 echo ""
-nodeserver
+echo -e "\e[1;32mВстановлено: [Lava,Dymension,Babylon] [StarkNet,Meson,Shardeum]"
