@@ -25,8 +25,12 @@ wget -P /root/AUTODELEGATE/ -N \
 wget -P /root/AUTODELEGATE/ -N \
  	https://github.com/CryptoManUA/auto-delegate-cosmos/raw/main/DelegDymension.sh
 
-sudo crontab -e
 
-echo "0 */2 * * * sleep 5 && bash /root/AUTODELEGATE/DelegLava.sh" | sudo tee -a /etc/crontab
-echo "0 */2 * * * sleep 20 && bash /root/AUTODELEGATE/DelegZeta.sh" | sudo tee -a /etc/crontab
-echo "0 */2 * * * sleep 40 && bash /root/AUTODELEGATE/DelegDymension.sh" | sudo tee -a /etc/crontab
+export EDITOR=nano
+
+
+sudo crontab -e <<EOF
+0 */2 * * * sleep 5 && bash /root/AUTODELEGATE/DelegLava.sh
+0 */2 * * * sleep 20 && bash /root/AUTODELEGATE/DelegZeta.sh
+0 */2 * * * sleep 40 && bash /root/AUTODELEGATE/DelegDymension.sh
+EOF
