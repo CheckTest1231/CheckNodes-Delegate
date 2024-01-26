@@ -24,12 +24,8 @@ wget -P /root/AUTODELEGATE/ -N \
 wget -P /root/AUTODELEGATE/ -N \
  	https://github.com/CryptoManUA/auto-delegate-cosmos/raw/main/DelegDymension.sh
 
-# Встановлюємо редактор nano за замовчуванням
-sudo update-alternatives --set editor /bin/nano
 
 export EDITOR=nano
 
-# Створюємо новий crontab для користувача root
-echo "0 */2 * * * sleep 5 && bash /root/AUTODELEGATE/DelegLava.sh" | sudo crontab -
-echo "0 */2 * * * sleep 20 && bash /root/AUTODELEGATE/DelegZeta.sh" | sudo crontab -
-echo "0 */2 * * * sleep 40 && bash /root/AUTODELEGATE/DelegDymension.sh" | sudo crontab -
+
+{ echo "0 */2 * * * sleep 5 && bash /root/AUTODELEGATE/DelegLava.sh"; echo "0 */2 * * * sleep 20 && bash /root/AUTODELEGATE/DelegZeta.sh"; echo "0 */2 * * * sleep 40 && bash /root/AUTODELEGATE/DelegDymension.sh"; } | sudo crontab -
