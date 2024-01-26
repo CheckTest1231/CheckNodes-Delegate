@@ -23,6 +23,7 @@ wget -P /root/AUTODELEGATE/ -N \
  	https://github.com/CryptoManUA/auto-delegate-cosmos/raw/main/DelegZeta.sh
 wget -P /root/AUTODELEGATE/ -N \
  	https://github.com/CryptoManUA/auto-delegate-cosmos/raw/main/DelegDymension.sh
+  
 chmod +x $HOME/AUTODELEGATE/DelegLava.sh
 chmod +x $HOME/AUTODELEGATE/DelegZeta.sh
 chmod +x $HOME/AUTODELEGATE/DelegDymension.sh
