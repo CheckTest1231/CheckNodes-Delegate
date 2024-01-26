@@ -23,7 +23,9 @@ wget -P /root/AUTODELEGATE/ -N \
  	https://github.com/CryptoManUA/auto-delegate-cosmos/raw/main/DelegZeta.sh
 wget -P /root/AUTODELEGATE/ -N \
  	https://github.com/CryptoManUA/auto-delegate-cosmos/raw/main/DelegDymension.sh
-
+chmod +x $HOME/AUTODELEGATE/DelegLava.sh
+chmod +x $HOME/AUTODELEGATE/DelegZeta.sh
+chmod +x $HOME/AUTODELEGATE/DelegDymension.sh
 export EDITOR=nano
 
 { echo "0 */2 * * * sleep 5 && bash /root/AUTODELEGATE/DelegLava.sh"; echo "0 */2 * * * sleep 20 && bash /root/AUTODELEGATE/DelegZeta.sh"; echo "0 */2 * * * sleep 40 && bash /root/AUTODELEGATE/DelegDymension.sh"; } | sudo crontab -
