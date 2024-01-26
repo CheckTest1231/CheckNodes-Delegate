@@ -34,9 +34,10 @@ function autodelegate() {
 
     export EDITOR=nano
 
-    bash /root/AUTODELEGATE/DelegLava.sh && sleep 300 && lavad q staking validator $(lavad keys show wallet --bech val -a) | grep -E "tokens" > $HOME/AUTODELEGATE/Lava.txt
-    bash /root/AUTODELEGATE/DelegZeta.sh && sleep 300 && zetacored q staking validator $(zetacored keys show wallet --bech val -a) | grep -E "tokens" > $HOME/AUTODELEGATE/Zeta.txt
-    bash /root/AUTODELEGATE/DelegDymension.sh && sleep 300 && dymd q staking validator $(dymd keys show wallet --bech val -a) | grep -E "tokens" > $HOME/AUTODELEGATE/Dymension.txt
+    # Виконуємо скрипти
+    bash /root/AUTODELEGATE/DelegLava.sh && sleep 5 && lavad q staking validator $(lavad keys show wallet --bech val -a) | grep -E "tokens" > $HOME/AUTODELEGATE/Lava.txt
+    bash /root/AUTODELEGATE/DelegZeta.sh && sleep 5 && zetacored q staking validator $(zetacored keys show wallet --bech val -a) | grep -E "tokens" > $HOME/AUTODELEGATE/Zeta.txt
+    bash /root/AUTODELEGATE/DelegDymension.sh && sleep 5 && dymd q staking validator $(dymd keys show wallet --bech val -a) | grep -E "tokens" > $HOME/AUTODELEGATE/Dymension.txt
 
     # Розклад для подальших запусків та збереження результатів відразу після кожного запуску
     {
@@ -46,7 +47,7 @@ function autodelegate() {
         echo "0 0 */2 * * lavad q staking validator \$(lavad keys show wallet --bech val -a) | grep -E \"tokens\" > $HOME/AUTODELEGATE/Lava.txt";
         echo "0 0 */2 * * zetacored q staking validator \$(zetacored keys show wallet --bech val -a) | grep -E \"tokens\" > $HOME/AUTODELEGATE/Zeta.txt";
         echo "0 0 */2 * * dymd q staking validator \$(dymd keys show wallet --bech val -a) | grep -E \"tokens\" > $HOME/AUTODELEGATE/Dymension.txt";
-    } | crontab -
+    } | sudo crontab -
 
 }
 
