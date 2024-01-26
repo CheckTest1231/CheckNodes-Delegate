@@ -7,8 +7,7 @@ function logo() {
 logo
 
 sudo apt update
-
-sudo apt install cron
+sudo apt install -y cron
 
 echo "export PATH=\$PATH:/root/AUTODELEGATE/" >> ~/.profile
 echo "export PATH=\$PATH:/root/AUTODELEGATE/" >> ~/.bash_profile
@@ -25,12 +24,8 @@ wget -P /root/AUTODELEGATE/ -N \
 wget -P /root/AUTODELEGATE/ -N \
  	https://github.com/CryptoManUA/auto-delegate-cosmos/raw/main/DelegDymension.sh
 
-
 export EDITOR=nano
 
-
-sudo crontab -e <<EOF
-0 */2 * * * sleep 5 && bash /root/AUTODELEGATE/DelegLava.sh
-0 */2 * * * sleep 20 && bash /root/AUTODELEGATE/DelegZeta.sh
-0 */2 * * * sleep 40 && bash /root/AUTODELEGATE/DelegDymension.sh
-EOF
+sudo bash -c 'echo "0 */2 * * * sleep 5 && bash /root/AUTODELEGATE/DelegLava.sh" >> /etc/crontab'
+sudo bash -c 'echo "0 */2 * * * sleep 20 && bash /root/AUTODELEGATE/DelegZeta.sh" >> /etc/crontab'
+sudo bash -c 'echo "0 */2 * * * sleep 40 && bash /root/AUTODELEGATE/DelegDymension.sh" >> /etc/crontab'
