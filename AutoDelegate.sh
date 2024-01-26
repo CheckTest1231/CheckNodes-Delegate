@@ -35,18 +35,20 @@ export EDITOR=nano
 # Перевіряємо, чи скрипт вже був запущений
 if [ ! -f /root/AUTODELEGATE/first_run_completed ]; then
     # Якщо не був, запускаємо всі три скрипти та записуємо дані при першому запуску
-    bash /root/AUTODELEGATE/DelegLava.sh && sleep 300 && lavad q staking validator $(lavad keys show wallet --bech val -a) | grep -E "tokens" > /root/AUTODELEGATE/Lava.txt
-    bash /root/AUTODELEGATE/DelegZeta.sh && sleep 300 && zetacored q staking validator $(zetacored keys show wallet --bech val -a) | grep -E "tokens" > /root/AUTODELEGATE/Zeta.txt
-    bash /root/AUTODELEGATE/DelegDymension.sh && sleep 300 && dymd q staking validator $(dymd keys show wallet --bech val -a) | grep -E "tokens" > /root/AUTODELEGATE/Dymension.txt
+    bash /root/AUTODELEGATE/DelegLava.sh && sleep 300 && lavad q staking validator $(lavad keys show wallet --bech val -a) | grep -E "tokens" > $HOME/AUTODELEGATE/Lava.txt
+    bash /root/AUTODELEGATE/DelegZeta.sh && sleep 300 && zetacored q staking validator $(zetacored keys show wallet --bech val -a) | grep -E "tokens" > $HOME/AUTODELEGATE/Zeta.txt
+    bash /root/AUTODELEGATE/DelegDymension.sh && sleep 300 && dymd q staking validator $(dymd keys show wallet --bech val -a) | grep -E "tokens" > $HOME/AUTODELEGATE/Dymension.txt
 
     # Встановлюємо флаг, що перший запуск відбувся
     touch /root/AUTODELEGATE/first_run_completed
 fi
 
 # Розклад для подальших запусків та збереження результатів відразу після кожного запуску
-{ echo "0 */2 * * * bash /root/AUTODELEGATE/DelegLava.sh"; \
-  echo "0 */2 * * * bash /root/AUTODELEGATE/DelegZeta.sh"; \
-  echo "0 */2 * * * bash /root/AUTODELEGATE/DelegDymension.sh"; \
-  echo "0 0 * * * sleep 300 && grep -E \"tokens\" /root/AUTODELEGATE/Lava.txt > /root/AUTODELEGATE/Lava_daily.txt"; \
-  echo "0 0 * * * sleep 300 && grep -E \"tokens\" /root/AUTODELEGATE/Zeta.txt > /root/AUTODELEGATE/Zeta_daily.txt"; \
-  echo "0 0 * * * sleep 300 && grep -E \"tokens\" /root/AUTODELEGATE/Dymension.txt > /root/AUTODELEGATE/Dymension_daily.txt"; } | sudo crontab -
+{
+  echo "0 */2 * * * bash /root/AUTODELEGATE/DelegLava.sh";
+  echo "0 */2 * * * bash /root/AUTODELEGATE/DelegZeta.sh";
+  echo "0 */2 * * * bash /root/AUTODELEGATE/DelegDymension.sh";
+  echo "0 0 */2 * * lavad q staking validator \$(lavad keys show wallet --bech val -a) | grep -E \"tokens\" > $HOME/AUTODELEGATE/Lava.txt";
+  echo "0 0 */2 * * zetacored q staking validator \$(zetacored keys show wallet --bech val -a) | grep -E \"tokens\" > $HOME/AUTODELEGATE/Zeta.txt";
+  echo "0 0 */2 * * dymd q staking validator \$(dymd keys show wallet --bech val -a) | grep -E \"tokens\" > $HOME/AUTODELEGATE/Dymension.txt";
+} | sudo crontab -
