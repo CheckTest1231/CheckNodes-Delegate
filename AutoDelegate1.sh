@@ -8,6 +8,7 @@ function logo() {
 # Викликаємо функцію для виводу логотипу
 logo
 
+function autodelegate() {
 sudo apt update
 sudo apt install -y cron
 
@@ -19,6 +20,7 @@ sudo systemctl start cron.service
 
 mkdir -p /root/AUTODELEGATE/
 
+# Завантажуємо скрипти з GitHub
 wget -P /root/AUTODELEGATE/ -N \
 	https://github.com/CryptoManUA/auto-delegate-cosmos/raw/main/DelegLava.sh
 wget -P /root/AUTODELEGATE/ -N \
@@ -32,16 +34,10 @@ chmod +x /root/AUTODELEGATE/DelegDymension.sh
 
 export EDITOR=nano
 
-# Перевіряємо, чи скрипт вже був запущений
-if [ ! -f /root/AUTODELEGATE/first_run_completed ]; then
-    # Якщо не був, запускаємо всі три скрипти та записуємо дані при першому запуску
-    bash /root/AUTODELEGATE/DelegLava.sh && sleep 300 && lavad q staking validator $(lavad keys show wallet --bech val -a) | grep -E "tokens" > $HOME/AUTODELEGATE/Lava.txt
-    bash /root/AUTODELEGATE/DelegZeta.sh && sleep 300 && zetacored q staking validator $(zetacored keys show wallet --bech val -a) | grep -E "tokens" > $HOME/AUTODELEGATE/Zeta.txt
-    bash /root/AUTODELEGATE/DelegDymension.sh && sleep 300 && dymd q staking validator $(dymd keys show wallet --bech val -a) | grep -E "tokens" > $HOME/AUTODELEGATE/Dymension.txt
+bash /root/AUTODELEGATE/DelegLava.sh && sleep 300 && lavad q staking validator $(lavad keys show wallet --bech val -a) | grep -E "tokens" > $HOME/AUTODELEGATE/Lava.txt
+bash /root/AUTODELEGATE/DelegZeta.sh && sleep 300 && zetacored q staking validator $(zetacored keys show wallet --bech val -a) | grep -E "tokens" > $HOME/AUTODELEGATE/Zeta.txt
+bash /root/AUTODELEGATE/DelegDymension.sh && sleep 300 && dymd q staking validator $(dymd keys show wallet --bech val -a) | grep -E "tokens" > $HOME/AUTODELEGATE/Dymension.txt
 
-    # Встановлюємо флаг, що перший запуск відбувся
-    touch /root/AUTODELEGATE/first_run_completed
-fi
 
 # Розклад для подальших запусків та збереження результатів відразу після кожного запуску
 {
@@ -52,3 +48,7 @@ fi
   echo "0 0 */2 * * zetacored q staking validator \$(zetacored keys show wallet --bech val -a) | grep -E \"tokens\" > $HOME/AUTODELEGATE/Zeta.txt";
   echo "0 0 */2 * * dymd q staking validator \$(dymd keys show wallet --bech val -a) | grep -E \"tokens\" > $HOME/AUTODELEGATE/Dymension.txt";
 } | sudo crontab -
+
+}
+
+autodelegate
