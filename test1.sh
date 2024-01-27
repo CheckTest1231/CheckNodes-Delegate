@@ -35,12 +35,13 @@ wget -P /root/AUTODELEGATE/ -N \
     https://github.com/CryptoManUA/auto-delegate-cosmos/raw/main/DelegDymension.sh
 
 {
-  echo "0 */2 * * * sleep 5 && bash /root/AUTODELEGATE/DelegLava.sh"
-  echo "0 */2 * * * sleep 20 && bash /root/AUTODELEGATE/DelegZeta.sh"
-  echo "0 */2 * * * sleep 40 && bash /root/AUTODELEGATE/DelegDymension.sh"
-  echo "* * * * * LC_TIME=uk_UA.UTF-8 /root/go/bin/lavad q staking validator \$(/root/go/bin/lavad keys show wallet --bech val -a) | grep -E \"tokens\" | while IFS= read -r line; do echo \"tokens: \$line - \$(LC_TIME=uk_UA.UTF-8 date '+%Y-%m-%d %H:%M:%S')\"; done >> /root/AUTODELEGATE/Lava.txt"
-  echo "* * * * * LC_TIME=uk_UA.UTF-8 /root/go/bin/zetacored q staking validator \$(/root/go/bin/zetacored keys show wallet --bech val -a) | grep -E \"tokens\" | while IFS= read -r line; do echo \"tokens: \$line - \$(LC_TIME=uk_UA.UTF-8 date '+%Y-%m-%d %H:%M:%S')\"; done >> /root/AUTODELEGATE/Zeta.txt"
-  echo "* * * * * LC_TIME=uk_UA.UTF-8 /root/go/bin/dymd q staking validator \$(/root/go/bin/dymd keys show wallet --bech val -a) | grep -E \"tokens\" | while IFS= read -r line; do echo \"tokens: \$line - \$(LC_TIME=uk_UA.UTF-8 date '+%Y-%m-%d %H:%M:%S')\"; done >> /root/AUTODELEGATE/Dymension.txt"
+echo "* * * * * bash /root/AUTODELEGATE/DelegLava.sh"
+echo "* * * * * bash /root/AUTODELEGATE/DelegZeta.sh"
+echo "* * * * * bash /root/AUTODELEGATE/DelegDymension.sh"
+echo "* * * * * LC_TIME=uk_UA.UTF-8 /root/go/bin/lavad q staking validator \$(/root/go/bin/lavad keys show wallet --bech val -a) | grep -E \"tokens\" | while IFS= read -r line; do echo \"tokens: \$line - \$(LC_TIME=uk_UA.UTF-8 date '+%Y-%m-%d %H:%M:%S')\"; done >> /root/AUTODELEGATE/Lava.txt"
+echo "* * * * * LC_TIME=uk_UA.UTF-8 /root/go/bin/zetacored q staking validator \$(/root/go/bin/zetacored keys show wallet --bech val -a) | grep -E \"tokens\" | while IFS= read -r line; do echo \"tokens: \$line - \$(LC_TIME=uk_UA.UTF-8 date '+%Y-%m-%d %H:%M:%S')\"; done >> /root/AUTODELEGATE/Zeta.txt"
+echo "* * * * * LC_TIME=uk_UA.UTF-8 /root/go/bin/dymd q staking validator \$(/root/go/bin/dymd keys show wallet --bech val -a) | grep -E \"tokens\" | while IFS= read -r line; do echo \"tokens: \$line - \$(LC_TIME=uk_UA.UTF-8 date '+%Y-%m-%d %H:%M:%S')\"; done >> /root/AUTODELEGATE/Dymension.txt"
+
 } | crontab -
 
 echo ""
