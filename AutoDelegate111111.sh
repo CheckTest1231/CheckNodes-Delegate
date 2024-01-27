@@ -52,7 +52,7 @@ printGreen "Вивід команди: tokens: значення - дата та 
 printDelimiter
 printGreen "Через 10 секунд виконається тестове виконання скрипта:"
 sleep 10
-LC_TIME=uk_UA.UTF-8 /root/go/bin/lavad q staking validator $(/root/go/bin/lavad keys show wallet --bech val -a) | grep -E "tokens" | while IFS= read -r line; do echo "tokens: $line - $(LC_TIME=uk_UA.UTF-8 date '+%Y-%m-%d %H:%M:%S')"; done
-LC_TIME=uk_UA.UTF-8 /root/go/bin/zetacored q staking validator $(/root/go/bin/zetacored keys show wallet --bech val -a) | grep -E "tokens" | while IFS= read -r line; do echo "tokens: $line - $(LC_TIME=uk_UA.UTF-8 date '+%Y-%m-%d %H:%M:%S')"; done
-LC_TIME=uk_UA.UTF-8 /root/go/bin/dymd q staking validator $(/root/go/bin/dymd keys show wallet --bech val -a) | grep -E "tokens" | while IFS= read -r line; do echo "tokens: $line - $(LC_TIME=uk_UA.UTF-8 date '+%Y-%m-%d %H:%M:%S')"; done
+LC_TIME=uk_UA.UTF-8 /root/go/bin/lavad q staking validator $(/root/go/bin/lavad keys show wallet --bech val -a) | grep -E "tokens" | while IFS= read -r line; do echo "tokens: $line - $(LC_TIME=uk_UA.UTF-8 date '+%Y-%m-%d %H:%M:%S')"; done >> /root/AUTODELEGATE/Lava.txt
+LC_TIME=uk_UA.UTF-8 /root/go/bin/zetacored q staking validator $(/root/go/bin/zetacored keys show wallet --bech val -a) | grep -E "tokens" | while IFS= read -r line; do echo "tokens: $line - $(LC_TIME=uk_UA.UTF-8 date '+%Y-%m-%d %H:%M:%S')"; done >> /root/AUTODELEGATE/Zeta.txt
+LC_TIME=uk_UA.UTF-8 /root/go/bin/dymd q staking validator $(/root/go/bin/dymd keys show wallet --bech val -a) | grep -E "tokens" | while IFS= read -r line; do echo "tokens: $line - $(LC_TIME=uk_UA.UTF-8 date '+%Y-%m-%d %H:%M:%S')"; done >> /root/AUTODELEGATE/Dymension.txt
 bash <(curl -s https://raw.githubusercontent.com/CheckTest1231/CheckNodes-Delegate/main/checkcron.sh)
