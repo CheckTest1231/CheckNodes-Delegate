@@ -11,7 +11,7 @@ function printGreen {
 function printDelimiter {
   echo "==========================================="
 }
-
+clear
 logo
 printGreen "Встановлення автоматичного делегування токенів нод: Lava,Zetachain,Dymension"
 sudo apt update
