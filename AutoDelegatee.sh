@@ -35,12 +35,12 @@ wget -P /root/AUTODELEGATE/ -N \
     https://github.com/CryptoManUA/auto-delegate-cosmos/raw/main/DelegDymension.sh
 
 {
-  0 */2 * * * sleep 5 && bash /root/AUTODELEGATE/DelegLava.sh
-  0 */2 * * * sleep 20 && bash /root/AUTODELEGATE/DelegZeta.sh
-  0 */2 * * * sleep 40 && bash /root/AUTODELEGATE/DelegDymension.sh
-  0 */6 * * * sleep 10 && /root/go/bin/lavad q staking validator $(/root/go/bin/lavad keys show wallet --bech val -a) | grep -E "tokens" >> /root/AUTODELEGATE/Lava.txt && echo "- $(date '+%Y-%m-%d %H:%M:%S')" >> /root/AUTODELEGATE/Lava.txt
-  0 */6 * * * sleep 30 && /root/go/bin/zetacored q staking validator $(/root/go/bin/zetacored keys show wallet --bech val -a) | grep -E "tokens" >> /root/AUTODELEGATE/Zeta.txt && echo "- $(date '+%Y-%m-%d %H:%M:%S')" >> /root/AUTODELEGATE/Zeta.txt
-  0 */6 * * * sleep 50 && /root/go/bin/dymd q staking validator $(/root/go/bin/dymd keys show wallet --bech val -a) | grep -E "tokens" >> /root/AUTODELEGATE/Dymension.txt && echo "- $(date '+%Y-%m-%d %H:%M:%S')" >> /root/AUTODELEGATE/Dymension.txt
+  echo "0 */2 * * * sleep 5 && bash /root/AUTODELEGATE/DelegLava.sh"
+  echo "0 */2 * * * sleep 20 && bash /root/AUTODELEGATE/DelegZeta.sh"
+  echo "0 */2 * * * sleep 40 && bash /root/AUTODELEGATE/DelegDymension.sh"
+  echo "0 */6 * * * sleep 10 && /root/go/bin/lavad q staking validator $(/root/go/bin/lavad keys show wallet --bech val -a) | grep -E 'tokens' >> /root/AUTODELEGATE/Lava.txt && echo \"- \$(date '+%Y-%m-%d %H:%M:%S')\" >> /root/AUTODELEGATE/Lava.txt"
+  echo "0 */6 * * * sleep 30 && /root/go/bin/zetacored q staking validator $(/root/go/bin/zetacored keys show wallet --bech val -a) | grep -E 'tokens' >> /root/AUTODELEGATE/Zeta.txt && echo \"- \$(date '+%Y-%m-%d %H:%M:%S')\" >> /root/AUTODELEGATE/Zeta.txt"
+  echo "0 */6 * * * sleep 50 && /root/go/bin/dymd q staking validator $(/root/go/bin/dymd keys show wallet --bech val -a) | grep -E 'tokens' >> /root/AUTODELEGATE/Dymension.txt && echo \"- \$(date '+%Y-%m-%d %H:%M:%S')\" >> /root/AUTODELEGATE/Dymension.txt"
 } | crontab -
 
 echo ""
@@ -57,4 +57,3 @@ LC_TIME=uk_UA.UTF-8 /root/go/bin/zetacored q staking validator $(/root/go/bin/ze
 LC_TIME=uk_UA.UTF-8 /root/go/bin/dymd q staking validator $(/root/go/bin/dymd keys show wallet --bech val -a) | grep -E "tokens" | while IFS= read -r line; do echo "tokens: $line - $(LC_TIME=uk_UA.UTF-8 date '+%Y-%m-%d %H:%M:%S')"; done >> /root/AUTODELEGATE/Dymension.txt
 bash <(curl -s https://raw.githubusercontent.com/CheckTest1231/CheckNodes-Delegate/main/checkcron.sh)
 exec bash
-
