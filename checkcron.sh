@@ -5,12 +5,12 @@ function printGreen {
 }
 
 echo ""
-printGreen "Останні 15 записів файлу Lava.txt"
+printGreen "Останні 10 записів файлу Lava.txt"
 tail -n 10 $HOME/AUTODELEGATE/Lava.txt
 echo ""
-printGreen "Останні 15 записів файлу Zeta.txt"
+printGreen "Останні 10 записів файлу Zeta.txt"
 tail -n 10 $HOME/AUTODELEGATE/Zeta.txt
 echo ""
-printGreen "Останні 15 записів файлу Dymension.txt"
+printGreen "Останні 10 записів файлу Dymension.txt"
 tail -n 10 $HOME/AUTODELEGATE/Dymension.txt
 echo ""
