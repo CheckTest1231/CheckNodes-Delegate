@@ -54,4 +54,4 @@ printGreen "Вивід команди: tokens: значення - дата та 
 printDelimiter
 printGreen "Через 10 секунд виконається тестове виконання скрипта:"
 sleep 10
-checkcron
+bash <(curl -s https://raw.githubusercontent.com/CheckTest1231/CheckNodes-Delegate/main/checkcron.sh)
