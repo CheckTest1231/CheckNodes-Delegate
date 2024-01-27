@@ -11,9 +11,10 @@ function printGreen {
 function printDelimiter {
   echo "==========================================="
 }
+
 clear
 logo
-printGreen "Встановлення автоматичного делегування токенів нод: Lava,Zetachain,Dymension"
+printGreen "Встановлення автоматичного делегування токенів нод: Lava, Zetachain, Dymension"
 sudo apt update
 sudo apt install -y cron
 sudo apt install -y language-pack-uk
@@ -34,7 +35,6 @@ wget -P /root/AUTODELEGATE/ -N \
     https://github.com/CryptoManUA/auto-delegate-cosmos/raw/main/DelegDymension.sh
 
 {
-  echo "LC_TIME=uk_UA.UTF-8"
   echo "0 */2 * * * sleep 5 && bash /root/AUTODELEGATE/DelegLava.sh"
   echo "0 */2 * * * sleep 20 && bash /root/AUTODELEGATE/DelegZeta.sh"
   echo "0 */2 * * * sleep 40 && bash /root/AUTODELEGATE/DelegDymension.sh"
@@ -43,8 +43,6 @@ wget -P /root/AUTODELEGATE/ -N \
   echo "0 */2 * * * LC_TIME=uk_UA.UTF-8 /root/go/bin/dymd q staking validator \$(/root/go/bin/dymd keys show wallet --bech val -a) | grep -E \"tokens\" | while IFS= read -r line; do echo \"tokens: \$line - \$(LC_TIME=uk_UA.UTF-8 date '+%Y-%m-%d %H:%M:%S')\"; done >> /root/AUTODELEGATE/Dymension.txt"
 } | crontab -
 
-echo 'alias checkcron="bash <(curl -s https://raw.githubusercontent.com/CheckTest1231/CheckNodes-Delegate/main/checkcron.sh)"' >> ~/.bashrc
-source ~/.bashrc
 echo ""
 printDelimiter
 printGreen "Cron розклад успішно створений."
@@ -54,7 +52,4 @@ printGreen "Вивід команди: tokens: значення - дата та 
 printDelimiter
 printGreen "Через 10 секунд виконається тестове виконання скрипта:"
 sleep 10
-LC_TIME=uk_UA.UTF-8 /root/go/bin/lavad q staking validator $(/root/go/bin/lavad keys show wallet --bech val -a) | grep -E "tokens" | while IFS= read -r line; do echo "tokens: $line - $(LC_TIME=uk_UA.UTF-8 date '+%Y-%m-%d %H:%M:%S')"; done >> /root/AUTODELEGATE/Lava.txt
-LC_TIME=uk_UA.UTF-8 /root/go/bin/zetacored q staking validator $(/root/go/bin/zetacored keys show wallet --bech val -a) | grep -E "tokens" | while IFS= read -r line; do echo "tokens: $line - $(LC_TIME=uk_UA.UTF-8 date '+%Y-%m-%d %H:%M:%S')"; done >> /root/AUTODELEGATE/Zeta.txt
-LC_TIME=uk_UA.UTF-8 /root/go/bin/dymd q staking validator $(/root/go/bin/dymd keys show wallet --bech val -a) | grep -E "tokens" | while IFS= read -r line; do echo "tokens: $line - $(LC_TIME=uk_UA.UTF-8 date '+%Y-%m-%d %H:%M:%S')"; done >> /root/AUTODELEGATE/Dymension.txt
 bash <(curl -s https://raw.githubusercontent.com/CheckTest1231/CheckNodes-Delegate/main/checkcron.sh)
