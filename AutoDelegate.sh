@@ -6,19 +6,19 @@ function logo() {
 
 logo
 
-# Оновлення apt та встановлення cron
+
 sudo apt update
 sudo apt install -y cron
 
-# Додавання шляху до профілю
+
 echo "export PATH=\$PATH:/root/AUTODELEGATE/" >> ~/.profile
 echo "export PATH=\$PATH:/root/AUTODELEGATE/" >> ~/.bash_profile
 
-# Активація та запуск служби cron
+
 sudo systemctl enable cron.service
 sudo systemctl start cron.service
 
-# Завантаження скриптів автоделегування
+
 mkdir -p /root/AUTODELEGATE/
 
 wget -P /root/AUTODELEGATE/ -N \
@@ -28,7 +28,7 @@ wget -P /root/AUTODELEGATE/ -N \
 wget -P /root/AUTODELEGATE/ -N \
     https://github.com/CryptoManUA/auto-delegate-cosmos/raw/main/DelegDymension.sh
 
-# Створення cron розкладу
+
 {
   echo "* */2 * * * sleep 5 bash /root/AUTODELEGATE/DelegLava.sh"
   echo "* */2 * * * sleep 20 && bash /root/AUTODELEGATE/DelegZeta.sh"
