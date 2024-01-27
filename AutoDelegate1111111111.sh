@@ -8,6 +8,10 @@ function printGreen {
   echo -e "\e[1m\e[32m${1}\e[0m"
 }
 
+function printDelimiter {
+  echo "==========================================="
+}
+
 logo
 
 sudo apt update
@@ -42,4 +46,9 @@ wget -P /root/AUTODELEGATE/ -N \
 echo 'alias checkcron="bash <(curl -s https://raw.githubusercontent.com/CheckTest1231/CheckNodes-Delegate/main/checkcron.sh)"' >> ~/.bashrc
 source ~/.bashrc
 echo ""
+printDelimiter
 printGreen "Cron розклад успішно створений."
+printGreen "Щоб перевірити роботу скрипта та фактичну кількість токенів заделегованих в вашого валідатора в данний момент - скористайтесь командою:"
+printGreen "checkcron"
+printGreen "Вивід команди: tokens: значення - дата та час останньго занесення інформації"
+printDelimiter
