@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Додає в кінець sudo crontab -e , не заміює повністю
 function logo() {
     bash <(curl -s https://raw.githubusercontent.com/CPITMschool/Scripts/main/logo.sh)
 }
