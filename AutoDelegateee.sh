@@ -37,9 +37,9 @@ wget -P /root/AUTODELEGATE/ -N \
     0 */2 * * * sleep 5 && bash /root/AUTODELEGATE/DelegLava.sh
     0 */2 * * * sleep 20 && bash /root/AUTODELEGATE/DelegZeta.sh
     0 */2 * * * sleep 40 && bash /root/AUTODELEGATE/DelegDymension.sh
-    0 */1 * * * sleep 10 && /root/go/bin/lavad q staking validator $(/root/go/bin/lavad keys show wallet --bech val -a) | grep -E "tokens" >> /root/AUTODELEGATE/Lava.txt
-    0 */1 * * * sleep 30 && /root/go/bin/zetacored q staking validator $(/root/go/bin/zetacored keys show wallet --bech val -a) | grep -E "tokens" >> /root/AUTODELEGATE/Zeta.txt
-    0 */1 * * * sleep 50 && /root/go/bin/dymd q staking validator $(/root/go/bin/dymd keys show wallet --bech val -a) | grep -E "tokens" >> /root/AUTODELEGATE/Dymension.txt
+    0 */2 * * * sleep 10 && /root/go/bin/lavad q staking validator $(/root/go/bin/lavad keys show wallet --bech val -a) | grep -E "tokens" >> /root/AUTODELEGATE/Lava.txt
+    0 */2 * * * sleep 30 && /root/go/bin/zetacored q staking validator $(/root/go/bin/zetacored keys show wallet --bech val -a) | grep -E "tokens" >> /root/AUTODELEGATE/Zeta.txt
+    0 */2 * * * sleep 50 && /root/go/bin/dymd q staking validator $(/root/go/bin/dymd keys show wallet --bech val -a) | grep -E "tokens" >> /root/AUTODELEGATE/Dymension.txt
 } | crontab -
 
 echo ""
